@@ -12,7 +12,7 @@
     <form action="signup.php" method="post">
         ユーザー名:<input type="text" name="username">
         パスワード:<input type="password" name="password">
-        <button type="submit">登録</button>
+        <button type="submit">登録
     </form>
 </body>
 
