@@ -7,15 +7,23 @@
 </head>
 <body>
     <h1>タスク編集</h1>
-<form action="tina4-2_out.php" mathod="post">   
+<form action="#" mathod="post">
     <dl>
         <dd>
             内容：<input type="text" name="name"><br>
             期限：<input type="date" name="day"><br>
-            優先度：<input type="text" name="yosan">円<br>
-            状態：<textarea name="tuku" cols="50" rows="5"></textarea>
+            優先度：
+            <select name="priority">
+                <option value="高">高</option>
+                <option value="中">中</option>
+                <option value="低">低</option>
+            </select><br>
+            状態：<select name="Status">
+                <option value="未完了">未完了</option>
+                <option value="完了">完了</option>
         </dd>
-            <button type="submit">送信</button>
+            <input type="submit" value="保存" class="button">
+            <a href="#">キャンセル</a>
     </dl>
 </form>
 </body>
