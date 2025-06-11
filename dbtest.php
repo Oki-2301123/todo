@@ -19,5 +19,6 @@ require_once 'function.php';
         echo "<p>名前: " . htmlspecialchars($row['username'], ENT_QUOTES, 'UTF-8') . "</p>";
     }
     ?>
+<!--テストです-->
 </body>
 </html>
