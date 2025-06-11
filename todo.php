@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,7 +7,7 @@
     <title>ToDoリスト</title>
 </head>
 <body>
-
+    
 <h1>ToDoリスト</h1>
 <!-- ログイン者の名前
  　　<a href="#">ログアウト</a> -->
@@ -19,14 +20,15 @@
         <option value="2">優先度(中)</option>
         <option value="3">優先度(高)</option>
 </select>
+</form>
 <button>適用</button>
 
-
-
     <h2>フィルタ/検索</h2>
-    <input type="text" name="filter" placeholder="キーワード"　required>> // フィルタ/検索のテキストボックス
-    <input type="date" name="y/m/d"　required>> //フィルタ/検索の日付入力欄
-    <select name='priority'　required>> //フィルタ/検索の優先度選択欄(プルダウン)        
+
+    
+    <input type="text" name="filter" placeholder="キーワード">  <!--フィルタ/検索のテキストボックス-->
+    <input type="date" name="y/m/d"> <!--フィルタ/検索の日付入力欄-->
+    <select name='priority'> <!--フィルタ/検索の優先度選択欄(プルダウン)  -->      
         <option value="1">優先度(全て)</option>
         <option value="2">優先度(低)</option>
         <option value="3">優先度(中)</option>
