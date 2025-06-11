@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,12 +7,24 @@
     <title>ToDoリスト</title>
 </head>
 <body>
+    <?php
+// セッションの開始
+session_start();
 
+$name = $_SESSION['name'];
+$email = $_SESSION['email'];
+$gender = $_SESSION['gender'];
+$message = $_SESSION['message'];
+//サーバーに保存されているsessionデータを変数に代入
+?>
 <h1>ToDoリスト</h1>
-
+name<!--ログイン者の名前-->
+<button>ログアウト</button><!--ログアウトボタン-->
 
 
     <h2>タスク追加</h2>
+
+<form action="??" method="post"> <!-- タスク追加のフォーム -->
     <input type="text" name="task" placeholder="タスク内容"> <!-- タスク追加のテキストボックス-->
     <input type="date" name="y/m/d"> <!-- タスク追加の日付入力欄-->
     <select name='priority'> <!-- タスク追加の優先度選択欄(プルダウン)-->  
@@ -19,11 +32,12 @@
         <option value="2">優先度(中)</option>
         <option value="3">優先度(高)</option>
 </select>
+</form>
 <button>適用</button>
 
-
-
     <h2>フィルタ/検索</h2>
+
+    
     <input type="text" name="filter" placeholder="キーワード">  <!--フィルタ/検索のテキストボックス-->
     <input type="date" name="y/m/d"> <!--フィルタ/検索の日付入力欄-->
     <select name='priority'> <!--フィルタ/検索の優先度選択欄(プルダウン)  -->      
@@ -33,5 +47,10 @@
         <option value="3">優先度(高)</option>
 </select>
 <button>適用</button>
+
+
+
+
+
 </body>
 </html>
