@@ -8,11 +8,12 @@
 </head>
 
 <body>
-    <h2>ユーザー登録</h2>
+    <h1>ユーザー登録</h1>
     <form action="signup.php" method="post">
-        ユーザー名:<input type="text" name="username">
-        パスワード:<input type="password" name="password">
-        <button type="submit">登録</button>
+        ユーザー名:<input type="text" name="username"><br>
+        パスワード:<input type="password" name="password"><br>
+        <button type="submit">登録<br><br>
+        <a href="rogin.php">ログインはこちら</a>
     </form>
 </body>
 
