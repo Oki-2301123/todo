@@ -16,7 +16,7 @@ require_once 'function.php';
 
     // データを表示
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<p>名前: " . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . "</p>";
+        echo "<p>名前: " . htmlspecialchars($row['username'], ENT_QUOTES, 'UTF-8') . "</p>";
     }
     ?>
 </body>
