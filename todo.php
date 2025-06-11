@@ -13,9 +13,9 @@
  　　<a href="#">ログアウト</a> -->
 
     <h2>タスク追加</h2>
-    <input type="text" name="task" placeholder="タスク内容"　required>> // タスク追加のテキストボックス
-    <input type="date" name="y/m/d"　required>> //タスク追加の日付入力欄
-    <select name='priority'　required>> //タスク追加の優先度選択欄(プルダウン)        
+    <input type="text" name="task" placeholder="タスク内容"　required>> <!--タスク追加のテキストボックス-->
+    <input type="date" name="y/m/d"　required>> <!--タスク追加の日付入力欄-->
+    <select name='priority'　required>> <!--タスク追加の優先度選択欄(プルダウン) -->       
         <option value="1">優先度(低)</option>
         <option value="2">優先度(中)</option>
         <option value="3">優先度(高)</option>
