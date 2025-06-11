@@ -6,7 +6,7 @@
     <title>ログイン</title>
 </head>
 <body>
-    <h2>ログイン</h2>
+    <h1>ログイン</h1>
     <form action="check.php" method="post">
     ユーザー名：<input type="text" name="username"><br>
     パスワード：<input type="password" name="password"><br>
