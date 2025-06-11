@@ -9,10 +9,10 @@
 
 <body>
     <h1>ユーザー登録</h1>
-    <form action="signup.php" method="post">
+    <form action="todo.php" method="post">
         ユーザー名:<input type="text" name="username"><br>
         パスワード:<input type="password" name="password"><br>
-        <button type="submit">登録<br><br>
+        <button type="submit">登録</button><br><br>
         <a href="rogin.php">ログインはこちら</a>
     </form>
 </body>
