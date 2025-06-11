@@ -18,7 +18,8 @@
                 <option value="中">中</option>
                 <option value="低">低</option>
             </select><br>
-            状態：<select name="Status">
+            状態：
+                <select name="Status">
                 <option value="未完了">未完了</option>
                 <option value="完了">完了</option>
         </dd>
