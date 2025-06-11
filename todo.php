@@ -20,8 +20,9 @@
         <option value="2">優先度(中)</option>
         <option value="3">優先度(高)</option>
 </select>
-</form>
 <button>適用</button>
+</form>
+
 
     <h2>フィルタ/検索</h2>
 
