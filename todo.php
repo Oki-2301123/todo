@@ -10,7 +10,7 @@
     
 <h1>ToDoリスト</h1>
 name<!--ログイン者の名前-->
-<button>ログアウト</button><!--ログアウトボタン-->
+
 
 
     <h2>タスク追加</h2>
@@ -23,8 +23,9 @@ name<!--ログイン者の名前-->
         <option value="2">優先度(中)</option>
         <option value="3">優先度(高)</option>
 </select>
-</form>
 <button>適用</button>
+</form>
+
 
     <h2>フィルタ/検索</h2>
 
