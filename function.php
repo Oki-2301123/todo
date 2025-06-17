@@ -10,4 +10,5 @@ function DB(){
     } catch (PDOException $e) {
         exit($e->getMessage());
     }
+
 }
