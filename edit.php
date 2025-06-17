@@ -36,10 +36,11 @@
                 <option value="低" <?php if($priority=="低") echo "selected"; ?>>低</option>
             </select><br><br>
             状態：
-                <select name="status">
+            <select name="status">
                 <option value="未完了">未完了</option>
                 <option value="完了">完了</option>
-        </dd><br><br>
+            </select><br><br>
+        </dd>
             <input type="submit" value="保存" class="button">
             <a href="#">キャンセル</a>
     </dl>
