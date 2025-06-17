@@ -4,8 +4,8 @@ require_once('function.php'); //DB関数を読み込む
 
 $pdo = DB(); //データベース接続
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+$user = $_POST['username'];
+$pass = $_POST['password'];
 
 // ユーザー名が一致するユーザーを探す
 $spl = "SELECT * FROM users WHERE username = ?";
