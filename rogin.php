@@ -23,7 +23,7 @@ session_start();
 <input type="submit" value="ログイン">
 </form>
 
-<p><a href="register.php">新規登録</a></p>
+<p><a href="signup.php">新規登録</a></p>
 
 </body>
 </html>
