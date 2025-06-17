@@ -8,10 +8,11 @@
 <body>
     <h1>タスク編集</h1>
 <?php
+/*
     $pdo = new PDO(
         'mysql:host=mysql304.phy.lolipop.lan;
         dbname=LAA1554903-php2024;charset=utf8',
-        'LAAの続き書く',
+        'LAA??????????',
         'データベースのパスワード'
     );
     $name=$_POST['name'];
@@ -23,6 +24,7 @@
     $sql->execute([$name,$day,$priority,$status]);
     $pdo = null;
     echo 'データ転送完了';
+*/
 ?>
 <form action="#" method="post">
     <dl>
