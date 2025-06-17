@@ -8,7 +8,7 @@ $user = $_POST['username'];
 $pass = $_POST['password'];
 
 // ユーザー名が一致するユーザーを探す
-$spl = "SELECT * FROM users WHERE username = ?";
+$spl = "SELECT * FROM users WHERE username = :username AND password =:password";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$username]);
 $user = $stmt->fetch();
