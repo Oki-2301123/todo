@@ -26,6 +26,7 @@ require_once('function.php'); ?>
  　　<a href="#">ログアウト</a> -->
 
     <h2>タスク追加</h2>
+    <form action="insart.php" method="post">
     <input type="text" name="task" placeholder="タスク内容" 　required> <!--タスク追加のテキストボックス-->
     <input type="date" name="due_date" 　required> <!--タスク追加の日付入力欄-->
     <select name='priority' 　required> <!--タスク追加の優先度選択欄(プルダウン) -->
@@ -34,13 +35,13 @@ require_once('function.php'); ?>
         <option value="3">優先度(高)</option>
     </select>
     <button>適用</button>
-
+    </form>
 
     <h2>フィルタ/検索</h2>
 
 
     <input type="text" name="filter" placeholder="キーワード"> <!--フィルタ/検索のテキストボックス-->
-    <input type="date" name="y/m/d"> <!--フィルタ/検索の日付入力欄-->
+    <input type="date" name="day"> <!--フィルタ/検索の日付入力欄-->
     <select name='priority'> <!--フィルタ/検索の優先度選択欄(プルダウン)  -->
         <option value="all">優先度(全て)</option>
         <option value="1">優先度(低)</option>
