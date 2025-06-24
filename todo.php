@@ -56,7 +56,6 @@ $priority = $_POST['priority'] ?? '';
 
 
     <h2>フィルタ/検索</h2>
-
     
     <input type="text" name="filter" placeholder="キーワード">  <!--フィルタ/検索のテキストボックス-->
     <input type="date" name="y/m/d"> <!--フィルタ/検索の日付入力欄-->

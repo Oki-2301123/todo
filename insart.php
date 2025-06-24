@@ -1,5 +1,5 @@
 <?php
-$sql = "INSERT INTO items (task,dya,priority ) VALUES (?, ?, ?)";
+$sql = "INSERT INTO todos (task,dya,priority ) VALUES (?, ?, ?)";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$task, $day, $priority]);
 
