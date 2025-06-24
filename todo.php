@@ -43,7 +43,7 @@ $priority = $_POST['priority'] ?? '';
  　　<a href="#">ログアウト</a> -->
 
     <h2>タスク追加</h2>
-    <form action="todo.php" method="post">
+    <form action="insart.php" method="post">
     <input type="text" name="task" placeholder="タスク内容"　required> <!--タスク追加のテキストボックス-->
     <input type="date" name="day"　required> <!--タスク追加の日付入力欄-->
     <select name='priority'　required> <!--タスク追加の優先度選択欄(プルダウン) -->       
@@ -52,12 +52,6 @@ $priority = $_POST['priority'] ?? '';
         <option value="3">優先度(高)</option>
 </select>
 <button>追加</button>
-
-<?php
-$sql = "INSERT INTO items (task,dya,priority ) VALUES (?, ?, ?)";
-$stmt = $pdo->prepare($sql);
-$stmt->execute([$task, $day, $priority]);
-?>
     </form>
 
 
