@@ -17,7 +17,7 @@ session_start();
     <?php unset($_SESSION['error']); ?>
 <?php endif; ?>
 <!-- ログインフォーム -->
-<form action="rogincheck.php" method="post">
+<form action="logincheck.php" method="post">
   ユーザー名: <input type="text" name="username"><br>
   パスワード: <input type="password" name="password"><br>
 <input type="submit" value="ログイン">

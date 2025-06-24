@@ -6,7 +6,7 @@ $user = $_POST['username'];
 $pass = $_POST['password'];
 if (!$user || !$pass) {
     $_SESSION['error'] = 'ユーザー名またはパスワードが入力されていません。';
-    header('Location: rogin.php');
+    header('Location: login.php');
     exit();
 }
 // ユーザー名が一致するユーザーを探す（パスワードの照合は後で行う）

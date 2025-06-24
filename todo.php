@@ -26,9 +26,9 @@ require_once('function.php'); ?>
  　　<a href="#">ログアウト</a> -->
 
     <h2>タスク追加</h2>
-    <form action="insart.php" method="post">
+    <form action="action.php" method="post">
     <input type="text" name="task" placeholder="タスク内容" 　required> <!--タスク追加のテキストボックス-->
-    <input type="date" name="due_date" 　required> <!--タスク追加の日付入力欄-->
+    <input type="date" name="day" 　required> <!--タスク追加の日付入力欄-->
     <select name='priority' 　required> <!--タスク追加の優先度選択欄(プルダウン) -->
         <option value="1">優先度(低)</option>
         <option value="2">優先度(中)</option>

@@ -2,10 +2,10 @@
 session_start(); // セッション開始
  
 // 定義
-$task = $_POST['task'] ?? '';
-$day = $_POST['day'] ?? '';
-$priority = $_POST['priority'] ?? '';
-$status = '未完了'; // 例: デフォルトのステータス（必要に応じて）
+$task = $_POST['task'];
+$day = $_POST['day']; // 期限
+$priority = $_POST['priority'];
+$status = 'todo'; // 例: デフォルトのステータス（必要に応じて）
  
 // DB接続
 require_once 'function.php'; // DB接続用関数が入っていると想定
