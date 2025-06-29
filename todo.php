@@ -1,6 +1,14 @@
 <?php
 session_start();
-require_once('function.php'); ?>
+require_once('function.php');
+
+$pdo = DB();
+if (!isset($_SESSION['user_id'])) {
+    // ユーザーがログインしていない場合はログインページへリダイレクト
+    header("Location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -13,12 +21,7 @@ require_once('function.php'); ?>
 <body>
     <!--データベース接続-->
     <?php
-    $pdo = DB();
-    if (!isset($_SESSION['user_id'])) {
-        // ユーザーがログインしていない場合はログインページへリダイレクト
-        header("Location: login.php");
-        exit;
-    }
+
     if (isset($_GET['search'])) {
         $keyword = '';
         $day = ''; // 初期値を設定
@@ -56,8 +59,9 @@ require_once('function.php'); ?>
         $stmt->execute([':user_id' => $_SESSION['user_id']]);
         $userData = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    echo "<p>ようこそ、" . htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') . "さん</p>";
+    echo "<p>" . htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') . "さん</p>";
     ?>
+    <a href="logout.php">ログアウト</a>
     <h1>ToDoリスト</h1>
 
     <!--タスク追加 -->
@@ -103,7 +107,7 @@ require_once('function.php'); ?>
     <br>
     <br>
 
-    <table>
+    <table border="1">
         <tr>
             <th>
                 状態
@@ -126,13 +130,11 @@ require_once('function.php'); ?>
         ?>
             <tr>
                 <td>
-                    <?php
-                    if ($i['status'] == 'todo') {
-                        echo '<input type="checkbox" name="status">';
-                    } else {
-                        echo '<input type="checkbox" name="status" checked>';
-                    }
-                    ?>
+                    <form action="update_status.php" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="<?= $i['id'] ?>">
+                        <input type="checkbox" name="status" onchange="this.form.submit()" <?= $i['status'] == 'done' ? 'checked' : '' ?>>
+                    </form>
+                    
                 </td>
                 <td>
                     <?= htmlspecialchars($i['task'], ENT_QUOTES, 'UTF-8') ?>
@@ -156,9 +158,12 @@ require_once('function.php'); ?>
                     ?>
                 </td>
                 <td>
-                    <form action="action.php" method="get">
+                    <form action="edit.php" method="get">
                         <input type="hidden" name="id" value="<?= htmlspecialchars($i['id'], ENT_QUOTES, 'UTF-8') ?>">
                         <button type="submit" name="edit">編集</button>
+                    </form>
+                    <form action="action.php" method="get">
+                        <input type="hidden" name="id" value="<?= htmlspecialchars($i['id'], ENT_QUOTES, 'UTF-8') ?>">
                         <button type="submit" name="delete">削除</button>
                     </form>
                 </td>
@@ -167,6 +172,21 @@ require_once('function.php'); ?>
         }
         ?>
     </table>
+
+    <?php
+    // タスク数と完了数の取得
+    $sql = "SELECT COUNT(*) as total, SUM(CASE WHEN status = 'done' THEN 1 ELSE 0 END) as done_count FROM todos WHERE user_id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$_SESSION['user_id']]);
+    $counts = $stmt->fetch(PDO::FETCH_ASSOC);
+    $donePercentage = $counts['total'] > 0 ? round(($counts['done_count'] / $counts['total']) * 100) : 0;
+    ?>
+    <div>
+        <p>完了率: <?= $donePercentage ?>%</p>
+        <progress value="<?= $donePercentage ?>" max="100" style="width: 100%; height: 20px;"></progress>
+    </div>
+
+
 
 </body>
 

@@ -18,8 +18,8 @@ session_start();
 <?php endif; ?>
 <!-- ログインフォーム -->
 <form action="logincheck.php" method="post">
-  ユーザー名: <input type="text" name="username"><br>
-  パスワード: <input type="password" name="password"><br>
+  ユーザー名: <input type="text" name="username" value="テストユーザー"><br>
+  パスワード: <input type="password" name="password" value="test1234"><br>
 <input type="submit" value="ログイン">
 </form>
 

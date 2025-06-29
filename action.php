@@ -36,8 +36,23 @@ if (isset($_POST['insert'])) {
     }
     header("Location: todo.php");
     exit;
-}else if(isset($_GET['edit'])){
-    echo '<input type="hidden" name="id" value="' . htmlspecialchars($_GET['id'], ENT_QUOTES, 'UTF-8') . '">';
-    header("Location: edit.php");
+} else if (isset($_POST['update'])) {
+    $id = $_POST['id'];
+    $task = $_POST['task'];
+    $day = $_POST['day'];
+    $priority = $_POST['priority'];
+    $status = $_POST['status'];
+    
+    $sql = "UPDATE todos SET task = ?, due_date = ?, priority = ?, status = ? WHERE id = ? AND user_id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        $task,
+        $day,
+        $priority,
+        $status,
+        $id,
+        $_SESSION['user_id']
+    ]);
+    header("Location: todo.php");
     exit;
 }

@@ -20,40 +20,32 @@ require_once 'function.php';
         header('Location: todo.php');
         exit;
     }
-    $sql = $pdo->prepare('SELECT * FROM データベース名を書く WHERE id = ?');
-    $sql->execute([$id]);
+    $sql = $pdo->prepare('SELECT * FROM todos WHERE id = ? AND user_id = ?');
+    $sql->execute([$id, $_SESSION['user_id']]);
     $task = $sql->fetch(PDO::FETCH_ASSOC);
     ?>
-    <form action="#" method="post">
-    <p>内容：<input type="text" name="task" value="<?php echo htmlspecialchars($task['task'], ENT_QUOTES, 'UTF-8'); ?>"></p>
-    <p>期限:<input type="date" name="day" value="<?php echo htmlspecialchars($task['due_date'], ENT_QUOTES, 'UTF-8'); ?>"></p>
-    <input type="select" name="priority">
-    <option value="高" <?php if ($task['priority'] == '高') echo 'selected'; ?>>高</option>
-    <option value="中" <?php if ($task['priority'] == '中') echo 'selected'; ?>>中</option>
-    <option value="低" <?php if ($task['priority'] == '低') echo 'selected'; ?>>低</option>
-    <input type="select" name="status">
-    <option value="未完了" <?php if ($task['status'] == 'todo') echo 'selected'; ?>>未完了</option>
-    <option value="完了" <?php if ($task['status'] == 'done') echo 'selected'; ?>>完了</option>
-    
-        <dl>
-            <dd>
-                内容：<input type="text" name="name" value="<?php echo $name; ?>"><br>
-                期限：<input type="date" name="day" value="<?php echo $day; ?>"><br>
-                優先度：
-                <select name="priority">
-                    <option value="高" <?php if ($priority == "高") echo "selected"; ?>>高</option>
-                    <option value="中" <?php if ($priority == "中") echo "selected"; ?>>中</option>
-                    <option value="低" <?php if ($priority == "低") echo "selected"; ?>>低</option>
-                </select><br><br>
-                状態：
-                <select name="status">
-                    <option value="未完了">未完了</option>
-                    <option value="完了">完了</option>
-                </select><br><br>
-            </dd>
-            <input type="submit" value="保存" class="button">
-            <a href="#">キャンセル</a>
-        </dl>
+    <form action="action.php" method="post">
+        <p>内容：<input type="text" name="task" value="<?php echo htmlspecialchars($task['task'], ENT_QUOTES, 'UTF-8'); ?>"></p>
+        <p>期限:<input type="date" name="day" value="<?php echo htmlspecialchars($task['due_date'], ENT_QUOTES, 'UTF-8'); ?>"></p>
+        <p>優先度：
+            <select name="priority">
+                <option value="1" <?php if ($task['priority'] == '1') echo 'selected'; ?>>低</option>
+                <option value="2" <?php if ($task['priority'] == '2') echo 'selected'; ?>>中</option>
+                <option value="3" <?php if ($task['priority'] == '3') echo 'selected'; ?>>高</option>
+            </select>
+        </p>
+        <p>状態：
+            <select name="status">
+                <option value="todo" <?php if ($task['status'] == 'todo') echo 'selected'; ?>>未完了</option>
+                <option value="done" <?php if ($task['status'] == 'done') echo 'selected'; ?>>完了</option>
+            </select>
+        </p>
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($task['id'], ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($task['user_id'], ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="submit" name="update" value="更新">
+    </form>
+    <form action="todo.php" method="post">
+        <input type="submit" value="戻る">
     </form>
 </body>
 
