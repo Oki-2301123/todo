@@ -7,10 +7,11 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン</title>
+    <link rel="stylesheet" href="../teamdev_todo/css/style.css">
 </head>
 <body>
 
-   <h1>ログイン</h1>   
+   <h1 class="center">ログイン</h1>   
     <!-- ここにエラー表示を追加 -->
 <?php if (!empty($_SESSION['error'])): ?>
     <p style="color:red;"><?php echo $_SESSION['error']; ?></p>
