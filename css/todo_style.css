@@ -1,0 +1,104 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 40px;
+    margin: 0;
+}
+
+.header {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.todo-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+fieldset {
+    border: 2px solid gold;
+    background: linear-gradient(to bottom, #78d4ff 50%, #6a82fb);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.center {
+    text-align: center;
+}
+
+.done {
+    background-color: #d4edda;
+}
+
+.todo {
+    background-color: #f8d7da;
+}
+
+button[type="submit"] {
+    background: linear-gradient(to bottom, #fc5c7d 50%, #6a82fb);
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 16px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+input[type="date"] {
+    width: 50%;
+    padding: 10px;
+    margin: 8px 0 16px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+select {
+    width: 50%;
+    padding: 10px;
+    margin: 8px 0 16px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap; /* 画面が狭いとき折り返す */
+    gap: 10px; /* 各要素の間隔 */
+    align-items: center;
+}
+
+.form-row input[type="text"],
+.form-row input[type="date"],
+.form-row select {
+    width: auto; /* 自動サイズ */
+    flex: 1 1 auto; /* 幅調整可能に */
+    min-width: 150px;
+}
+
+progress {
+    width: 100%;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ffffff;
+}

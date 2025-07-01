@@ -1,5 +1,5 @@
 <?php
-header('Location: https://aso2301123.tonkotsu.jp/teamdev_todo/rogin.php');
+header('Location: https://aso2301123.tonkotsu.jp/teamdev_todo/login.php');
 require_once('function.php');
 $pdo = DB();
     $user = $_POST['user'];

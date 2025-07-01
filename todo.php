@@ -16,6 +16,8 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDoリスト</title>
+    <link rel="stylesheet" href="../teamdev_todo/css/todo_style.css">
+
 </head>
 
 <body>
@@ -59,55 +61,80 @@ if (!isset($_SESSION['user_id'])) {
         $stmt->execute([':user_id' => $_SESSION['user_id']]);
         $userData = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    echo "<p>" . htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') . "さん</p>";
+    echo "<p class='user'>" . htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') . "さん</p>";
     ?>
-    <a href="logout.php">ログアウト</a>
-    <h1>ToDoリスト</h1>
+    <div class="header">
+        <a href="logout.php">ログアウト</a>
+    </div>
+    <h1 class="center">ToDoリスト</h1>
 
-    <!--タスク追加 -->
-    <h2>タスク追加</h2>
-    <form action="action.php" method="post">
-        <input type="text" name="task" placeholder="タスク内容" 　required> <!--タスク追加のテキストボックス-->
-        <input type="date" name="day" 　required> <!--タスク追加の日付入力欄-->
-        <select name='priority' 　required> <!--タスク追加の優先度選択欄(プルダウン) -->
-            <option value="1">
-                優先度(低)
-            </option>
-            <option value="2">
-                優先度(中)
-            </option>
-            <option value="3">
-                優先度(高)
-            </option>
-        </select>
-        <button type="submit" name="insert">適用</button>
-    </form>
+    <?php
+    // タスク数と完了数の取得
+    $sql = "SELECT COUNT(*) as total, SUM(CASE WHEN status = 'done' THEN 1 ELSE 0 END) as done_count FROM todos WHERE user_id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$_SESSION['user_id']]);
+    $counts = $stmt->fetch(PDO::FETCH_ASSOC);
+    $donePercentage = $counts['total'] > 0 ? round(($counts['done_count'] / $counts['total']) * 100) : 0;
+    ?>
+    <div>
+        <p>完了率: <?= $donePercentage ?>%</p>
+        <progress value="<?= $donePercentage ?>" max="100" style="width: 100%; height: 20px;"></progress>
+    </div>
+
+
+    <fieldset>
+        <!--タスク追加 -->
+        <legend>
+            <h2>タスク追加</h2>
+        </legend>
+        <form action="action.php" method="post">
+            <input type="text" name="task" placeholder="タスク内容" 　required> <!--タスク追加のテキストボックス-->
+            <div class="form-row">
+                <input type="date" name="day" 　required> <!--タスク追加の日付入力欄-->
+                <select name='priority' 　required> <!--タスク追加の優先度選択欄(プルダウン) -->
+                    <option value="1">
+                        優先度(低)
+                    </option>
+                    <option value="2">
+                        優先度(中)
+                    </option>
+                    <option value="3">
+                        優先度(高)
+                    </option>
+                </select>
+            </div>
+            <button type="submit" name="insert">適用</button>
+        </form>
+    </fieldset>
 
     <!--フィルタ/検索 -->
-    <h2>フィルタ/検索</h2>
-    <form action="#" method="get">
-        <input type="text" name="keyword" placeholder="キーワード"> <!--フィルタ/検索のテキストボックス-->
-        <input type="date" name="day"> <!--フィルタ/検索の日付入力欄-->
-        <select name='priority'> <!--フィルタ/検索の優先度選択欄(プルダウン)  -->
-            <option value="all">
-                優先度(全て)
-            </option>
-            <option value="1">
-                優先度(低)
-            </option>
-            <option value="2">
-                優先度(中)
-            </option>
-            <option value="3">
-                優先度(高)
-            </option>
-        </select>
-        <button type="submit" name="search">適用</button>
-    </form>
-    <br>
-    <br>
-
-    <table border="1">
+    <fieldset>
+        <legend>
+            <h2>フィルタ/検索</h2>
+        </legend>
+        <form action="#" method="get">
+            <input type="text" name="keyword" placeholder="キーワード"> <!--フィルタ/検索のテキストボックス-->
+            <div class="form-row">
+                <input type="date" name="day"> <!--フィルタ/検索の日付入力欄-->
+                <select name='priority'> <!--フィルタ/検索の優先度選択欄(プルダウン)  -->
+                    <option value="all">
+                        優先度(全て)
+                    </option>
+                    <option value="1">
+                        優先度(低)
+                    </option>
+                    <option value="2">
+                        優先度(中)
+                    </option>
+                    <option value="3">
+                        優先度(高)
+                    </option>
+                </select>
+            </div>
+            <button type="submit" name="search">適用</button>
+        </form>
+    </fieldset>
+    <table border="1" class="todo-table">
         <tr>
             <th>
                 状態
@@ -128,13 +155,13 @@ if (!isset($_SESSION['user_id'])) {
         <?php
         foreach ($userData as $i) {
         ?>
-            <tr>
+            <tr class="<?= $i['status'] == 'done' ? 'done' : 'todo' ?>">
                 <td>
                     <form action="update_status.php" method="post" style="display:inline;">
                         <input type="hidden" name="id" value="<?= $i['id'] ?>">
                         <input type="checkbox" name="status" onchange="this.form.submit()" <?= $i['status'] == 'done' ? 'checked' : '' ?>>
                     </form>
-                    
+
                 </td>
                 <td>
                     <?= htmlspecialchars($i['task'], ENT_QUOTES, 'UTF-8') ?>
@@ -157,7 +184,7 @@ if (!isset($_SESSION['user_id'])) {
                     }
                     ?>
                 </td>
-                <td>
+                <td class="actions">
                     <form action="edit.php" method="get">
                         <input type="hidden" name="id" value="<?= htmlspecialchars($i['id'], ENT_QUOTES, 'UTF-8') ?>">
                         <button type="submit" name="edit">編集</button>
@@ -172,21 +199,6 @@ if (!isset($_SESSION['user_id'])) {
         }
         ?>
     </table>
-
-    <?php
-    // タスク数と完了数の取得
-    $sql = "SELECT COUNT(*) as total, SUM(CASE WHEN status = 'done' THEN 1 ELSE 0 END) as done_count FROM todos WHERE user_id = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$_SESSION['user_id']]);
-    $counts = $stmt->fetch(PDO::FETCH_ASSOC);
-    $donePercentage = $counts['total'] > 0 ? round(($counts['done_count'] / $counts['total']) * 100) : 0;
-    ?>
-    <div>
-        <p>完了率: <?= $donePercentage ?>%</p>
-        <progress value="<?= $donePercentage ?>" max="100" style="width: 100%; height: 20px;"></progress>
-    </div>
-
-
 
 </body>
 
